@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { Layout } from './components/Layout';
 import { LandingPage } from './pages/LandingPage';
+import { DeveloperHubPage } from './pages/DeveloperHubPage';
 import { LoginPage } from './pages/LoginPage';
 import { CitizenDashboard } from './pages/CitizenDashboard';
 import { AIWasteScanner } from './pages/AIWasteScanner';
@@ -28,6 +29,7 @@ export function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/hub" element={<DeveloperHubPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/track/:batchCode" element={<PublicTrackingPage />} />
 

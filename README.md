@@ -109,13 +109,13 @@ flowchart TD
 | # | Module | Core Functionality | Tech Applied |
 | :-: | :--- | :--- | :--- |
 | **01** | **AI Waste Classifier** | Real-time object recognition (PET, HDPE, Glass, Metal, Cardboard) with confidence scoring & CPCB disposal guide | YOLOv8, PyTorch, Canvas Confetti |
-| **02** | **IoT Smart Bins Radar** | Live campus radar map with dynamic ultrasonic fill % gauges, load cell weight & battery health telemetry | Leaflet, OpenStreetMap, MQTT, ESP32 |
+| **02** | **IoT Smart Bins Radar** | Live municipal radar map with dynamic ultrasonic fill % gauges, load cell weight & battery health telemetry | Leaflet, OpenStreetMap, MQTT, ESP32 |
 | **03** | **Digital Plastic Passport** | Unique QR identity per collected batch (`ECO-PET-2026-XXXXXX`) documenting immutable chain-of-custody | QRCode Engine, Cryptographic Audit Trail |
 | **04** | **Public Tracking Portal** | Publicly verifiable web ledger allowing consumers & auditors to inspect polymer origin and recycling history | Open Web Ledger, ISO 14021 Standard |
 | **05** | **Route Optimizer** | Traveling Salesperson Problem (TSP) heuristic sequencing stops to prioritize overflow bins & reduce EV miles | TSP Algorithm, Haversine Distance |
 | **06** | **MRF 5-Stage Pipeline** | Recycler facility pipeline: Received ➔ Sorted ➔ Hot Wash & Shred ➔ Extrusion ➔ Circular Complete | Mass Balance Reconciliation, CPCB Form IV |
-| **07** | **Rewards Wallet** | Verified deposits award Green Points redeemable for campus dining vouchers, bookstore credits & eco kits | Tiered Gamification, Canvas Confetti |
-| **08** | **Campus Leaderboard** | Real-time ranking of hostel dorms and student eco-warriors based on cumulative diverted kilograms | Aggregate Analytics, Real-time Sorting |
+| **07** | **Rewards Wallet** | Verified deposits award Green Points redeemable for partner merchant vouchers, credits & eco kits | Tiered Gamification, Canvas Confetti |
+| **08** | **District Leaderboard** | Real-time ranking of municipal zones and verified citizen eco-champions based on cumulative diverted kilograms | Aggregate Analytics, Real-time Sorting |
 | **09** | **B2B Feedstock Market** | B2B trading catalog for certified Grade-A rPET flakes, HDPE granules, and post-consumer resins | Order Lifecycle, Stock Reservation |
 | **10** | **Carbon LCA Analytics** | Quantified environmental impact: CO₂ abated (kg), tree sequestration equivalents & landfill diversion (m³) | DEFRA Emission Factors, Recharts Visuals |
 | **11** | **Pickup Booking** | On-demand doorstep collection request with preferred time slot and category selection | Reactive Web Forms, Geo-tagging |

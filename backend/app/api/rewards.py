@@ -36,8 +36,8 @@ def get_leaderboard(db: Session = Depends(get_db)):
         leaderboard.append({
             "rank": rank,
             "user_name": w.user.full_name,
-            "college_name": w.user.college_name or "Tech Institute",
-            "hostel_name": w.user.hostel_name or "Green Block",
+            "college_name": w.user.college_name or "Metropolitan Urban District",
+            "hostel_name": w.user.hostel_name or "Green Zone Alpha",
             "total_points": w.lifetime_points,
             "total_waste_kg": round(w.lifetime_points / 20.0, 1)
         })
