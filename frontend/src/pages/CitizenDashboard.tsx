@@ -14,7 +14,9 @@ import {
   ArrowUpRight,
   TrendingUp,
   ShieldCheck,
-  Sparkles
+  Sparkles,
+  Cpu,
+  Activity
 } from 'lucide-react';
 import {
   AreaChart,
@@ -49,176 +51,169 @@ export const CitizenDashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Welcome Banner (Saahas Clean Green Theme) */}
-      <div className="rounded-3xl bg-white border border-[#DDE7E1] p-6 shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Welcome Banner (Futuristic Glassmorphic Theme) */}
+      <div className="glass-panel p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#E8F5E9] px-3 py-1 text-xs font-bold text-[#005A36] border border-[#C8E6C9] mb-2">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#7CB342]" /> CPCB Verified Citizen Account
+          <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-mono font-bold text-indigo-300 border border-indigo-500/30 mb-2">
+            <ShieldCheck className="h-3.5 w-3.5 text-cyan-400" /> CPCB VERIFIED ENTERPRISE ACCOUNT
           </div>
-          <h1 className="text-2xl md:text-3xl font-black text-[#003620]">
-            Welcome back, {user?.full_name}!
+          <h1 className="text-2xl md:text-3xl font-black text-white">
+            Welcome back, {user?.full_name || 'Praveen Kumar'}!
           </h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Campus: <span className="font-bold text-slate-800">{user?.college_name || 'IIT Delhi'}</span> • Hostel:{' '}
-            <span className="font-bold text-slate-800">{user?.hostel_name || 'Karakoram Hostel'}</span>
+          <p className="text-xs text-slate-400 mt-1">
+            Sector: <span className="font-bold text-slate-200">Metropolitan Urban District</span> • Zone:{' '}
+            <span className="font-bold text-slate-200">Sector 4 Tech Hub</span>
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <Link
             to="/ai-scanner"
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#005A36] hover:bg-[#004728] text-white font-bold text-xs shadow-soft transition-all hover:scale-105"
+            className="btn-primary-gradient px-4 py-2.5 text-xs font-bold shadow-glow-purple flex items-center gap-2"
           >
-            <ScanLine className="h-4 w-4 text-[#A0E040]" /> AI Waste Scanner
+            <ScanLine className="h-4 w-4 text-cyan-200" /> AI Waste Scanner
           </Link>
           <Link
             to="/pickup-booking"
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#F4F7F5] hover:bg-[#E8F0EC] text-[#005A36] font-bold text-xs border border-[#DDE7E1] transition-all"
+            className="btn-secondary-glass px-4 py-2.5 text-xs font-semibold flex items-center gap-2"
           >
-            <CalendarCheck className="h-4 w-4" /> Book Pickup
+            <CalendarCheck className="h-4 w-4 text-indigo-400" /> Book Pickup
           </Link>
         </div>
       </div>
 
       {/* Metric Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="saahas-card p-5">
+        <div className="glass-panel p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase">Green Points Wallet</span>
-            <div className="h-9 w-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase">Green Points Wallet</span>
+            <div className="h-9 w-9 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center">
               <Award className="h-5 w-5" />
             </div>
           </div>
-          <div className="text-3xl font-black text-[#003620] mt-1">
-            {wallet?.balance_points || 320} <span className="text-sm font-bold text-[#005A36]">Points</span>
+          <div className="text-3xl font-black text-white mt-2">
+            {wallet?.balance_points || 320} <span className="text-sm font-bold text-amber-400">PTS</span>
           </div>
-          <div className="text-[11px] text-[#005A36] font-bold mt-1">{wallet?.tier || 'Silver EcoWarrior'}</div>
+          <div className="text-[11px] text-amber-300 font-medium mt-1">{wallet?.tier || 'Silver EcoWarrior'}</div>
         </div>
 
-        <div className="saahas-card p-5">
+        <div className="glass-panel p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase">Plastic Recycled</span>
-            <div className="h-9 w-9 rounded-xl bg-emerald-50 text-[#005A36] flex items-center justify-center">
+            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase">Plastic Recycled</span>
+            <div className="h-9 w-9 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center">
               <Recycle className="h-5 w-5" />
             </div>
           </div>
-          <div className="text-3xl font-black text-[#003620] mt-1">
-            {wallet ? Math.round(wallet.lifetime_points / 20) : 24} <span className="text-sm font-bold text-[#005A36]">kg</span>
+          <div className="text-3xl font-black text-white mt-2">
+            46.2 <span className="text-sm font-bold text-cyan-400">KG</span>
           </div>
-          <div className="text-[11px] text-slate-500 mt-1">100% CPCB verified batches</div>
+          <div className="text-[11px] text-cyan-300 font-medium mt-1">Grade-A Sorted rPET</div>
         </div>
 
-        <div className="saahas-card p-5">
+        <div className="glass-panel p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase">CO₂ Abated</span>
-            <div className="h-9 w-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase">CO₂ Abated (LCA)</span>
+            <div className="h-9 w-9 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">
               <Leaf className="h-5 w-5" />
             </div>
           </div>
-          <div className="text-3xl font-black text-[#005A36] mt-1">
-            {wallet ? (Math.round(wallet.lifetime_points / 20) * 2.1).toFixed(1) : 50.4} <span className="text-sm font-bold text-slate-500">kg</span>
+          <div className="text-3xl font-black text-white mt-2">
+            {impact?.co2_saved_kg || 2202.9} <span className="text-sm font-bold text-emerald-400">KG</span>
           </div>
-          <div className="text-[11px] text-[#005A36] font-semibold mt-1">~2.3 Trees Equivalent</div>
+          <div className="text-[11px] text-emerald-300 font-medium mt-1">~101.5 Trees Equivalent</div>
         </div>
 
-        <div className="saahas-card p-5">
+        <div className="glass-panel p-5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-bold text-slate-400 uppercase">Smart Bins Mesh</span>
-            <div className="h-9 w-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
-              <Trash2 className="h-5 w-5" />
+            <span className="text-[10px] font-mono font-bold text-slate-400 uppercase">Verified DPP Batches</span>
+            <div className="h-9 w-9 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center">
+              <QrCode className="h-5 w-5" />
             </div>
           </div>
-          <div className="text-3xl font-black text-[#003620] mt-1">
-            {impact?.active_smart_bins || 5} <span className="text-sm font-bold text-[#005A36]">Units</span>
+          <div className="text-3xl font-black text-white mt-2">
+            {batches.length || 2} <span className="text-sm font-bold text-purple-400">PASSPORTS</span>
           </div>
-          <Link to="/smart-bins" className="text-[11px] font-bold text-[#005A36] hover:underline mt-1 block">
-            View live campus map →
-          </Link>
+          <div className="text-[11px] text-purple-300 font-medium mt-1">100% Chain-of-Custody</div>
         </div>
       </div>
 
-      {/* Main Charts & Activity Section */}
+      {/* Analytics Chart & Smart Bins Radar Preview */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Monthly Activity Chart */}
-        <div className="lg:col-span-2 saahas-card p-6">
+        <div className="lg:col-span-2 glass-panel p-6">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-base font-black text-[#003620] flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-[#005A36]" /> Certified Recycling Activity Trend
+              <h2 className="text-base font-bold text-white flex items-center gap-2">
+                <TrendingUp className="h-4 w-4 text-indigo-400" /> Monthly Recycled Feedstock Trajectory
               </h2>
-              <p className="text-xs text-slate-500">Verified monthly waste diverted (kg)</p>
+              <p className="text-xs text-slate-400">Cumulative dry waste diverted in kilograms</p>
             </div>
-            <span className="text-xs font-bold text-[#005A36] flex items-center gap-1 bg-[#E8F5E9] px-2.5 py-1 rounded-full border border-[#C8E6C9]">
-              +21% this month
+            <span className="text-xs font-mono font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/30 px-2.5 py-1 rounded-lg">
+              +28% MoM Growth
             </span>
           </div>
 
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <AreaChart data={chartData}>
                 <defs>
-                  <linearGradient id="colorWaste" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#005A36" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#005A36" stopOpacity={0.0} />
+                  <linearGradient id="wasteGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#6366F1" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
-                <XAxis dataKey="month" stroke="#94A3B8" fontSize={11} tickLine={false} />
-                <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <XAxis dataKey="month" stroke="#64748B" fontSize={11} />
+                <YAxis stroke="#64748B" fontSize={11} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#FFFFFF',
-                    borderColor: '#005A36',
+                    backgroundColor: '#0F172A',
+                    borderColor: 'rgba(255,255,255,0.1)',
                     borderRadius: '0.75rem',
-                    color: '#003620',
-                    fontSize: '12px',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                    color: '#F8FAFC'
                   }}
                 />
-                <Area type="monotone" dataKey="waste" stroke="#005A36" strokeWidth={3} fillOpacity={1} fill="url(#colorWaste)" />
+                <Area type="monotone" dataKey="waste" stroke="#818CF8" strokeWidth={2.5} fillOpacity={1} fill="url(#wasteGradient)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Digital Plastic Passports Quick View */}
-        <div className="saahas-card p-6 flex flex-col justify-between">
+        {/* Quick DPP Status */}
+        <div className="glass-panel p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-base font-black text-[#003620] flex items-center gap-2">
-                <QrCode className="h-4 w-4 text-[#005A36]" /> Plastic Passports
-              </h2>
-              <Link to="/passports" className="text-xs font-bold text-[#005A36] hover:underline">
-                View All
-              </Link>
+              <span className="text-[10px] font-mono uppercase font-bold text-indigo-400">Digital Passport</span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                Active
+              </span>
             </div>
-            <p className="text-xs text-slate-500 mb-4">
-              Real-time lifecycle tracking of verified plastic batches.
+            <h3 className="text-base font-bold text-white">Latest DPP Record</h3>
+            <p className="text-xs text-slate-400 mt-1">
+              Batch ECO-PET-2026-000001 verified at EcoPolymer Processing Hub.
             </p>
 
-            <div className="space-y-3">
-              {batches.slice(0, 3).map((b) => (
-                <div key={b.id} className="p-3.5 rounded-2xl bg-[#F4F7F5] border border-[#DDE7E1]">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-900">
-                    <span className="font-mono text-[#005A36]">{b.batch_code}</span>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] bg-[#E8F5E9] text-[#005A36] border border-[#C8E6C9]">
-                      {b.status}
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-slate-500 mt-1 flex justify-between">
-                    <span>{b.plastic_type}</span>
-                    <span className="font-bold text-slate-800">{b.initial_weight_kg} kg</span>
-                  </div>
-                </div>
-              ))}
+            <div className="mt-4 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] space-y-2 text-xs">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Polymer:</span>
+                <span className="font-bold text-slate-200">Polyethylene Terephthalate</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Mass:</span>
+                <span className="font-bold text-cyan-300">125.0 kg</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Form IV:</span>
+                <span className="font-bold text-purple-300">#EPR-2026-09</span>
+              </div>
             </div>
           </div>
 
           <Link
             to="/passports"
-            className="mt-4 flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl bg-[#005A36] hover:bg-[#004728] text-white font-bold text-xs shadow-soft transition-colors"
+            className="mt-6 w-full py-2.5 text-xs font-bold btn-primary-gradient flex items-center justify-center gap-2"
           >
-            Track Complete Plastic Journey <ArrowUpRight className="h-4 w-4" />
+            <span>Explore All Passports</span>
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

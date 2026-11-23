@@ -1,7 +1,16 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { UserRole } from '../types';
-import { Recycle, Bell, Shield, User as UserIcon, LogOut, Radio, Sparkles, ChevronRight } from 'lucide-react';
+import { 
+  Recycle, 
+  Radio, 
+  Sparkles, 
+  LogOut, 
+  Github, 
+  ExternalLink,
+  ShieldCheck,
+  Cpu
+} from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
@@ -9,38 +18,44 @@ export const Navbar: React.FC = () => {
   const navigate = useNavigate();
 
   const roleStyles: Record<UserRole, { badge: string; text: string }> = {
-    CITIZEN: { badge: 'bg-emerald-50 text-emerald-800 border-emerald-200', text: 'Citizen' },
-    COLLECTOR: { badge: 'bg-amber-50 text-amber-800 border-amber-200', text: 'Collector' },
-    RECYCLER: { badge: 'bg-blue-50 text-blue-800 border-blue-200', text: 'Recycler' },
-    ADMIN: { badge: 'bg-purple-50 text-purple-800 border-purple-200', text: 'Admin' },
-    SUPER_ADMIN: { badge: 'bg-rose-50 text-rose-800 border-rose-200', text: 'Super Admin' }
+    CITIZEN: { badge: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30 shadow-[0_0_12px_rgba(16,185,129,0.25)]', text: 'Citizen Producer' },
+    COLLECTOR: { badge: 'bg-amber-500/10 text-amber-300 border-amber-500/30 shadow-[0_0_12px_rgba(245,158,11,0.25)]', text: 'Fleet Collector' },
+    RECYCLER: { badge: 'bg-blue-500/10 text-blue-300 border-blue-500/30 shadow-[0_0_12px_rgba(59,130,246,0.25)]', text: 'MRF Recycler' },
+    ADMIN: { badge: 'bg-purple-500/10 text-purple-300 border-purple-500/30 shadow-[0_0_12px_rgba(168,85,247,0.25)]', text: 'City Admin' },
+    SUPER_ADMIN: { badge: 'bg-rose-500/10 text-rose-300 border-rose-500/30 shadow-[0_0_12px_rgba(244,63,94,0.25)]', text: 'Super Admin' }
   };
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-[#DDE7E1] bg-white/95 px-4 backdrop-blur-md md:px-8 shadow-xs">
-      <div className="flex items-center gap-3">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#005A36] text-white shadow-soft transition-transform group-hover:scale-105">
-            <Recycle className="h-6 w-6 text-[#A0E040]" />
+    <header className="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-white/[0.08] bg-dark-950/80 px-4 backdrop-blur-2xl md:px-8">
+      {/* Brand Logo & Developer Credential */}
+      <div className="flex items-center gap-4">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 text-white shadow-glow-purple transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(139,92,246,0.7)]">
+            <Recycle className="h-5 w-5 text-cyan-200 transition-transform duration-500 group-hover:rotate-180" />
+            <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
           <div>
-            <div className="text-lg font-black tracking-tight text-[#003620] leading-none flex items-center gap-1.5">
-              ECOTRACE <span className="text-[#005A36]">360</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#E8F5E9] text-[#005A36] border border-[#C8E6C9]">
-                Zero Waste
+            <div className="text-base font-black tracking-tight text-white flex items-center gap-2">
+              <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">ECOTRACE</span>
+              <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">360</span>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                PRO
               </span>
             </div>
-            <div className="text-[11px] font-medium text-slate-500">
-              Smart Waste Management & EPR Circular Tracker
+            <div className="text-[10px] font-mono text-slate-400 flex items-center gap-1.5">
+              <span>Autonomous Circular Protocol</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-indigo-400/90 font-medium">by Praveen Kumar</span>
             </div>
           </div>
         </Link>
       </div>
 
+      {/* Role Switcher & Telemetry Hub */}
       <div className="flex items-center gap-3">
-        {/* Quick Role Switcher for seamless evaluation */}
-        <div className="hidden lg:flex items-center gap-1 bg-[#F4F7F5] p-1 rounded-xl text-xs font-semibold text-slate-600 border border-[#DDE7E1]">
-          <span className="px-2 text-slate-400 text-[11px] font-bold">ROLE:</span>
+        {/* Quick Role Switcher */}
+        <div className="hidden xl:flex items-center gap-1 bg-dark-900/90 p-1 rounded-xl text-xs font-semibold border border-white/[0.08] backdrop-blur-xl">
+          <span className="px-2 text-slate-500 text-[10px] font-mono uppercase tracking-wider">Perspective:</span>
           {(['CITIZEN', 'COLLECTOR', 'RECYCLER', 'ADMIN', 'SUPER_ADMIN'] as UserRole[]).map((r) => (
             <button
               key={r}
@@ -51,10 +66,10 @@ export const Navbar: React.FC = () => {
                 else if (r === 'RECYCLER') navigate('/recycler');
                 else navigate('/admin');
               }}
-              className={`px-3 py-1.5 rounded-lg text-xs transition-all font-bold ${
+              className={`px-3 py-1.5 rounded-lg text-xs transition-all font-semibold ${
                 role === r
-                  ? 'bg-[#005A36] text-white shadow-soft'
-                  : 'text-slate-600 hover:bg-[#E8F0EC] hover:text-[#005A36]'
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-glow-blue'
+                  : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
               }`}
             >
               {r === 'SUPER_ADMIN' ? 'SUPER ADMIN' : r}
@@ -62,35 +77,50 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Live IoT Status Pill */}
-        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E8F5E9] border border-[#C8E6C9] text-xs font-bold text-[#005A36]">
-          <span className="h-2 w-2 rounded-full bg-[#7CB342] animate-pulse" />
-          <span>IoT Mesh Live</span>
+        {/* Live IoT Node Pulse */}
+        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono font-semibold text-cyan-300">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+          </span>
+          <span>IoT Mesh Active</span>
         </div>
+
+        {/* Developer GitHub Profile Link */}
+        <a
+          href="https://github.com/dev-kaushikpraveen"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-semibold border border-white/[0.08] transition-all hover:scale-105"
+        >
+          <Github className="h-3.5 w-3.5 text-purple-400" />
+          <span>Praveen Kumar</span>
+          <ExternalLink className="h-3 w-3 text-slate-500" />
+        </a>
 
         {/* Active Role Badge */}
         {role && (
-          <span className={`px-2.5 py-1 text-xs font-bold rounded-lg border ${roleStyles[role].badge}`}>
+          <span className={`px-2.5 py-1 text-xs font-bold rounded-lg border backdrop-blur-md ${roleStyles[role].badge}`}>
             {roleStyles[role].text}
           </span>
         )}
 
-        {/* User Profile */}
+        {/* User Identity */}
         {user ? (
-          <div className="flex items-center gap-2 pl-2 border-l border-[#DDE7E1]">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E8F5E9] text-[#005A36] font-bold border border-[#C8E6C9] text-sm">
-              {user.full_name?.charAt(0) || 'U'}
+          <div className="flex items-center gap-2 pl-2 border-l border-white/[0.08]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-bold text-sm shadow-glow-purple">
+              {user.full_name?.charAt(0) || 'P'}
             </div>
-            <div className="hidden md:block text-left">
-              <div className="text-xs font-bold text-slate-900 leading-tight">{user.full_name}</div>
-              <div className="text-[10px] text-slate-500 leading-tight">
-                {user.college_name || user.email}
+            <div className="hidden lg:block text-left">
+              <div className="text-xs font-bold text-white leading-tight">{user.full_name}</div>
+              <div className="text-[10px] font-mono text-slate-400 leading-tight">
+                {user.email}
               </div>
             </div>
             <button
               onClick={logout}
               title="Logout"
-              className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors ml-1"
+              className="p-1.5 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors ml-1"
             >
               <LogOut className="h-4 w-4" />
             </button>
@@ -98,9 +128,9 @@ export const Navbar: React.FC = () => {
         ) : (
           <Link
             to="/login"
-            className="rounded-xl bg-[#005A36] px-4 py-2 text-xs font-bold text-white hover:bg-[#004728] shadow-soft transition-colors"
+            className="btn-primary-gradient px-4 py-2 text-xs font-bold shadow-glow-blue"
           >
-            Sign In
+            Launch Console
           </Link>
         )}
       </div>

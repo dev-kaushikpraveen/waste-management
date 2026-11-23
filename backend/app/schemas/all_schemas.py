@@ -22,8 +22,8 @@ class UserRegister(BaseModel):
     full_name: str
     phone: Optional[str] = None
     role: UserRoleEnum = UserRoleEnum.CITIZEN
-    college_name: Optional[str] = "Green Tech University"
-    hostel_name: Optional[str] = "Hostel Alpha"
+    college_name: Optional[str] = "Metropolitan Urban Authority"
+    hostel_name: Optional[str] = "Sector 4 Tech District"
 
 class UserLogin(BaseModel):
     email: EmailStr
@@ -51,7 +51,7 @@ class BinCreate(BaseModel):
     latitude: float
     longitude: float
     address: Optional[str] = None
-    area: Optional[str] = "Main Campus"
+    area: Optional[str] = "Commercial Sector"
     bin_type: Optional[str] = "Plastic & Dry Waste"
     capacity_liters: Optional[float] = 120.0
     max_weight_kg: Optional[float] = 50.0

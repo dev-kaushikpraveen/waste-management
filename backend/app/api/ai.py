@@ -35,7 +35,7 @@ def classify_waste(req: AIClassifyRequest):
     return result
 
 @router.get("/forecast-waste", response_model=List[WastePredictionResponse])
-def forecast_waste(area: str = "Hostel Zone", days: int = 5):
+def forecast_waste(area: str = "Commercial Sector", days: int = 5):
     """
     ML Prediction of waste generation and bin overflow probability
     """

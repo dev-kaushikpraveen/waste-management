@@ -56,7 +56,7 @@ class AIWasteClassifier:
         elif g > r and g > b:
             category = "Organic waste"
             confidence = 0.89
-            recom = "Place into Brown Wet Waste Bin or campus compost unit. Do not mix with dry recyclables."
+            recom = "Place into Brown Wet Waste Bin or municipal compost unit. Do not mix with dry recyclables."
             recyclability = "Compostable. Converts to organic nutrient-rich soil humus within 21 days."
             boxes = [
                 {"x": 0.3, "y": 0.3, "width": 0.4, "height": 0.4, "label": "Organic Biomass", "confidence": 0.89}

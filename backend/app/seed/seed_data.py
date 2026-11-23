@@ -16,7 +16,7 @@ def seed_initial_data():
 
         # 1. Five Core User Roles
         users_data = [
-            ("citizen@ecotrace.org", "EcoCitizen2026!", "Aarav Sharma", UserRoleEnum.CITIZEN, "IIT Delhi", "Karakoram Hostel"),
+            ("citizen@ecotrace.org", "EcoCitizen2026!", "Praveen Kumar", UserRoleEnum.CITIZEN, "Metropolitan Urban Authority", "Sector 4 Tech District"),
             ("collector@ecotrace.org", "EcoCollector2026!", "Vikram Singh", UserRoleEnum.COLLECTOR, None, None),
             ("recycler@ecotrace.org", "EcoRecycler2026!", "EcoPolymer Recycling Ltd", UserRoleEnum.RECYCLER, None, None),
             ("admin@ecotrace.org", "EcoAdmin2026!", "Dr. Priya Nair", UserRoleEnum.ADMIN, None, None),
@@ -24,7 +24,7 @@ def seed_initial_data():
         ]
 
         created_users = {}
-        for email, pwd, name, role, college, hostel in users_data:
+        for email, pwd, name, role, org, district in users_data:
             u = User(
                 email=email,
                 hashed_password=get_password_hash(pwd),
@@ -32,8 +32,8 @@ def seed_initial_data():
                 role=role,
                 is_active=True,
                 is_verified=True,
-                college_name=college,
-                hostel_name=hostel
+                college_name=org,
+                hostel_name=district
             )
             db.add(u)
             db.commit()
@@ -46,13 +46,13 @@ def seed_initial_data():
                 db.add(wallet)
                 db.commit()
 
-        # 2. Smart Bins across Campus
+        # 2. Smart Bins across Smart City Districts
         bins_data = [
-            ("BIN-DEL-01", "Main Cafeteria Bin A", 28.5458, 77.1926, "Near Student Center", "Hostel Zone", 85.0, 38.5, "COLLECTION_NEEDED"),
-            ("BIN-DEL-02", "Central Library Smart Bin", 28.5442, 77.1910, "Library Plaza Ground Floor", "Academic Block", 42.0, 18.0, "ACTIVE"),
-            ("BIN-DEL-03", "Sports Complex Recycler", 28.5475, 77.1945, "Athletics Arena Gate 2", "Sports Complex", 94.0, 48.0, "OVERFLOW"),
-            ("BIN-DEL-04", "Engineering Block B Bin", 28.5430, 77.1895, "Computer Science Foyer", "Academic Block", 25.0, 11.2, "ACTIVE"),
-            ("BIN-DEL-05", "Hostel Alpha Entrance", 28.5480, 77.1880, "Hostel Quadrangle", "Hostel Zone", 78.0, 35.0, "COLLECTION_NEEDED"),
+            ("BIN-DEL-01", "Central Commercial Hub Bin A", 28.5458, 77.1926, "Civic Center Plaza", "Commercial Sector", 85.0, 38.5, "COLLECTION_NEEDED"),
+            ("BIN-DEL-02", "Innovation Center Smart Bin", 28.5442, 77.1910, "Technology Park Gate 2", "Tech Corridor", 42.0, 18.0, "ACTIVE"),
+            ("BIN-DEL-03", "Metro Transit Station Recycler", 28.5475, 77.1945, "Station Concourse", "Transit Zone", 94.0, 48.0, "OVERFLOW"),
+            ("BIN-DEL-04", "Enterprise Tower South Bin", 28.5430, 77.1895, "Commercial Block B", "Commercial Sector", 25.0, 11.2, "ACTIVE"),
+            ("BIN-DEL-05", "Residential Sector 4 Entrance", 28.5480, 77.1880, "Skyline Boulevard", "Residential Sector", 78.0, 35.0, "COLLECTION_NEEDED"),
         ]
 
         for code, name, lat, lon, addr, area, fill, wt, st in bins_data:
@@ -131,7 +131,7 @@ def seed_initial_data():
         batch_2 = WasteBatch(
             batch_code=batch_2_code,
             plastic_type="HDPE plastic",
-            source_location="Hostel Alpha Entrance",
+            source_location="Residential Sector 4 Entrance",
             source_type="CITIZEN_PICKUP",
             initial_weight_kg=84.0,
             status=BatchStatusEnum.IN_TRANSIT,

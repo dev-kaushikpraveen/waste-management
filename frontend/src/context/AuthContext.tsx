@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setToken(null);
         }
       } else {
-        // Auto login as Citizen for instant college demo if no session exists
+        // Auto login as Citizen for seamless evaluator experience if no session exists
         quickSwitchRole('CITIZEN');
       }
       setIsLoading(false);

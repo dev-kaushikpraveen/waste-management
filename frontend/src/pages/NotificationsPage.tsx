@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, CheckCircle2, AlertTriangle, Truck, Award } from 'lucide-react';
+import { Bell, CheckCircle2, AlertTriangle, Truck, Award, Radio } from 'lucide-react';
 
 export const NotificationsPage: React.FC = () => {
   const alerts = [
@@ -12,14 +12,14 @@ export const NotificationsPage: React.FC = () => {
     },
     {
       title: 'Smart Bin Overflow Alert (Sector 3)',
-      desc: 'Sports Complex Recycler BIN-DEL-03 reached 94% fill capacity. Collector assigned.',
+      desc: 'Transit Zone Recycler BIN-DEL-03 reached 94% fill capacity. Collector assigned.',
       time: '1 hour ago',
       type: 'alert',
       read: false
     },
     {
       title: 'Pickup Scheduled Confirmed',
-      desc: 'Electric truck DL-01-EV-4421 scheduled for Karakoram Hostel collection (9 AM - 12 PM).',
+      desc: 'Electric truck DL-01-EV-4421 scheduled for Sector 4 Commercial Hub collection (9 AM - 12 PM).',
       time: '3 hours ago',
       type: 'truck',
       read: true
@@ -36,34 +36,34 @@ export const NotificationsPage: React.FC = () => {
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-[#E8F5E9] px-3 py-1 text-xs font-bold text-[#005A36] border border-[#C8E6C9] mb-2">
-          <Bell className="h-3.5 w-3.5 text-[#7CB342]" /> Real-time Feeds
+        <div className="inline-flex items-center gap-1.5 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-mono font-bold text-indigo-300 border border-indigo-500/30 mb-2">
+          <Radio className="h-3.5 w-3.5 text-cyan-300 animate-pulse" /> REAL-TIME EVENT STREAM
         </div>
-        <h1 className="text-2xl md:text-3xl font-black text-[#003620]">
+        <h1 className="text-2xl md:text-3xl font-black text-white">
           Notifications & Operational Alerts
         </h1>
-        <p className="text-xs md:text-sm text-slate-500 mt-1">
+        <p className="text-xs md:text-sm text-slate-400 mt-1">
           Real-time updates regarding IoT smart bins, pickup collections, reward credits, and recycling milestones.
         </p>
       </div>
 
-      <div className="saahas-card p-6 space-y-3">
+      <div className="glass-panel p-6 space-y-3">
         {alerts.map((a, i) => (
           <div
             key={i}
-            className={`p-4 rounded-2xl border transition-all flex items-start gap-3.5 ${
-              !a.read ? 'bg-[#E8F5E9]/40 border-[#C8E6C9]' : 'bg-[#F8FAF9] border-[#E0EAE3]'
+            className={`p-4 rounded-xl border transition-all flex items-start gap-3.5 ${
+              !a.read ? 'bg-indigo-950/30 border-indigo-500/30' : 'bg-dark-900/60 border-white/[0.06]'
             }`}
           >
             <div
               className={`h-9 w-9 rounded-xl flex items-center justify-center shrink-0 ${
                 a.type === 'reward'
-                  ? 'bg-amber-100 text-amber-800'
+                  ? 'bg-amber-500/10 text-amber-400 border border-amber-500/30'
                   : a.type === 'alert'
-                  ? 'bg-red-100 text-red-800'
+                  ? 'bg-red-500/10 text-red-400 border border-red-500/30'
                   : a.type === 'truck'
-                  ? 'bg-blue-100 text-blue-800'
-                  : 'bg-[#E8F5E9] text-[#005A36]'
+                  ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
               }`}
             >
               {a.type === 'reward' && <Award className="h-5 w-5" />}
@@ -74,10 +74,10 @@ export const NotificationsPage: React.FC = () => {
 
             <div className="flex-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-900">{a.title}</span>
-                <span className="text-[10px] text-slate-400 font-medium">{a.time}</span>
+                <span className="text-xs font-bold text-white">{a.title}</span>
+                <span className="text-[10px] font-mono text-slate-500">{a.time}</span>
               </div>
-              <p className="text-xs text-slate-600 mt-1 leading-relaxed">{a.desc}</p>
+              <p className="text-xs text-slate-400 mt-1 leading-relaxed">{a.desc}</p>
             </div>
           </div>
         ))}

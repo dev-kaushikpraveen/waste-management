@@ -49,11 +49,11 @@ class AIWastePredictor:
         predictions = []
         now = datetime.utcnow()
         density_map = {
-            "Hostel Zone": 2.0,
-            "Main Cafeteria": 2.5,
-            "Academic Block": 1.5,
-            "Sports Complex": 1.2,
-            "North Campus": 1.4
+            "Commercial Sector": 2.0,
+            "Civic Center": 2.5,
+            "Tech Corridor": 1.5,
+            "Transit Zone": 2.2,
+            "Residential Sector": 1.8
         }
         density = density_map.get(area, 1.5)
 
@@ -64,7 +64,7 @@ class AIWastePredictor:
             day_total = 0.0
             for hr in [10, 14, 19]:
                 pred = self.regressor.predict([[day_of_week, hr, 45.0, density]])[0]
-                day_total += pred * 6.5 # scale for campus sector
+                day_total += pred * 6.5 # scale for urban district
 
             overflow_risk = min(0.98, max(0.12, (day_total - 40) / 60))
             priority = "URGENT" if overflow_risk > 0.8 else ("HIGH" if overflow_risk > 0.6 else "NORMAL")

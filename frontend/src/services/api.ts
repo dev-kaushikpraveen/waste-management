@@ -64,7 +64,7 @@ export const api = {
     return res.json();
   },
 
-  forecastWaste: async (area = 'Hostel Zone', days = 5) => {
+  forecastWaste: async (area = 'Commercial Sector', days = 5) => {
     const res = await fetch(`${API_BASE}/ai/forecast-waste?area=${encodeURIComponent(area)}&days=${days}`, {
       headers: authHeaders()
     });
