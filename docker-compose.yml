@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ecotrace360_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=ecotrace360-super-secret-jwt-key-2026
+      - DATABASE_URL=postgresql://ecotrace:ecotrace_pass@postgres:5432/ecotrace360
+      - MQTT_BROKER=mosquitto
+      - MQTT_PORT=1883
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mosquitto:
+        condition: service_started
+    volumes:
+      - ./backend:/app
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ecotrace360_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ecotrace360_postgres
+    environment:
+      POSTGRES_USER: ecotrace
+      POSTGRES_PASSWORD: ecotrace_pass
+      POSTGRES_DB: ecotrace360
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecotrace -d ecotrace360"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: ecotrace360_mqtt
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    restart: always
+
+volumes:
+  postgres_data:
